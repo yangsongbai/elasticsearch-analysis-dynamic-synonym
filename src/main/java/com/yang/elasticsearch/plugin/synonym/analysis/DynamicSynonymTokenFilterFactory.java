@@ -1,4 +1,4 @@
-package com.bellszhu.elasticsearch.plugin.synonym.analysis;
+package com.yang.elasticsearch.plugin.synonym.analysis;
 
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.index.IndexSettings;
 import org.elasticsearch.index.analysis.AbstractTokenFilterFactory;
-import org.elasticsearch.index.analysis.AnalysisMode;
+//import org.elasticsearch.index.analysis.AnalysisMode;
 import org.elasticsearch.index.analysis.CharFilterFactory;
 import org.elasticsearch.index.analysis.CustomAnalyzer;
 import org.elasticsearch.index.analysis.TokenFilterFactory;
@@ -54,7 +54,7 @@ public class DynamicSynonymTokenFilterFactory extends
     protected SynonymMap synonymMap;
     protected Map<AbsSynonymFilter, Integer> dynamicSynonymFilters = new WeakHashMap<>();
     protected final Environment environment;
-    protected final AnalysisMode analysisMode;
+    //protected final AnalysisMode analysisMode;
 
     public DynamicSynonymTokenFilterFactory(
             IndexSettings indexSettings,
@@ -77,14 +77,14 @@ public class DynamicSynonymTokenFilterFactory extends
         this.lenient = settings.getAsBoolean("lenient", false);
         this.format = settings.get("format", "");
         boolean updateable = settings.getAsBoolean("updateable", false);
-        this.analysisMode = updateable ? AnalysisMode.SEARCH_TIME : AnalysisMode.ALL;
+      //  this.analysisMode = updateable ? AnalysisMode.SEARCH_TIME : AnalysisMode.ALL;
         this.environment = env;
     }
 
-    @Override
+/*    @Override
     public AnalysisMode getAnalysisMode() {
         return this.analysisMode;
-    }
+    }*/
 
 
     @Override
@@ -128,10 +128,11 @@ public class DynamicSynonymTokenFilterFactory extends
                 return IDENTITY_FILTER;
             }
 
-            @Override
+
+            /*            @Override
             public AnalysisMode getAnalysisMode() {
                 return analysisMode;
-            }
+            }*/
         };
     }
 
@@ -141,6 +142,7 @@ public class DynamicSynonymTokenFilterFactory extends
             List<TokenFilterFactory> tokenFilters
     ) {
         return new CustomAnalyzer(
+                    "",
                 tokenizer,
                 charFilters.toArray(new CharFilterFactory[0]),
                 tokenFilters.stream().map(TokenFilterFactory::getSynonymFilter).toArray(TokenFilterFactory[]::new)

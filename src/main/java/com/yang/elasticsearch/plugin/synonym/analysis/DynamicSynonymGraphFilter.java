@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.bellszhu.elasticsearch.plugin.synonym.analysis;
+package com.yang.elasticsearch.plugin.synonym.analysis;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -284,7 +284,7 @@ public final class DynamicSynonymGraphFilter extends AbsSynonymFilter {
     BytesRef pendingOutput = fst.outputs.getNoOutput();
     fst.getFirstArc(scratchArc);
 
-    assert scratchArc.output() == fst.outputs.getNoOutput();
+    assert scratchArc.output == fst.outputs.getNoOutput();
 
     // How many tokens in the current match
     int matchLength = 0;
@@ -354,7 +354,7 @@ public final class DynamicSynonymGraphFilter extends AbsSynonymFilter {
         }
 
         // Accum the output
-        pendingOutput = fst.outputs.add(pendingOutput, scratchArc.output());
+        pendingOutput = fst.outputs.add(pendingOutput, scratchArc.output);
         bufUpto += Character.charCount(codePoint);
       }
 
@@ -363,7 +363,7 @@ public final class DynamicSynonymGraphFilter extends AbsSynonymFilter {
       // OK, entire token matched; now see if this is a final
       // state in the FST (a match):
       if (scratchArc.isFinal()) {
-        matchOutput = fst.outputs.add(pendingOutput, scratchArc.nextFinalOutput());
+        matchOutput = fst.outputs.add(pendingOutput, scratchArc.nextFinalOutput);
         matchInputLength = matchLength;
         matchEndOffset = inputEndOffset;
         //System.out.println("    ** match");
@@ -379,7 +379,7 @@ public final class DynamicSynonymGraphFilter extends AbsSynonymFilter {
       } else {
         // More matching is possible -- accum the output (if
         // any) of the WORD_SEP arc:
-        pendingOutput = fst.outputs.add(pendingOutput, scratchArc.output());
+        pendingOutput = fst.outputs.add(pendingOutput, scratchArc.output);
         doFinalCapture = true;
         if (liveToken) {
           capture();
@@ -587,6 +587,7 @@ public final class DynamicSynonymGraphFilter extends AbsSynonymFilter {
     scratchArc = new FST.Arc<>();
 
   }
+
 
   // for testing
   int getCaptureCount() {

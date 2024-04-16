@@ -1,4 +1,4 @@
-package com.bellszhu.elasticsearch.plugin;
+package com.yang.elasticsearch.plugin;
 
 import static org.elasticsearch.plugins.AnalysisPlugin.requiresAnalysisSettings;
 
@@ -10,8 +10,8 @@ import org.elasticsearch.indices.analysis.AnalysisModule.AnalysisProvider;
 import org.elasticsearch.plugins.AnalysisPlugin;
 import org.elasticsearch.plugins.Plugin;
 
-import com.bellszhu.elasticsearch.plugin.synonym.analysis.DynamicSynonymGraphTokenFilterFactory;
-import com.bellszhu.elasticsearch.plugin.synonym.analysis.DynamicSynonymTokenFilterFactory;
+import com.yang.elasticsearch.plugin.synonym.analysis.DynamicSynonymGraphTokenFilterFactory;
+import com.yang.elasticsearch.plugin.synonym.analysis.DynamicSynonymTokenFilterFactory;
 
 
 /**

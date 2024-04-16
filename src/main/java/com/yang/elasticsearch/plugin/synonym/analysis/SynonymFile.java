@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.bellszhu.elasticsearch.plugin.synonym.analysis;
+package com.yang.elasticsearch.plugin.synonym.analysis;
 
 import java.io.Reader;
 
